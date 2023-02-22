@@ -119,3 +119,12 @@ createdb bookshelf_test
 psql bookshelf_test < books.psql
 python test_flaskr.py
 ```
+
+---
+
+#### Troubleshooting
+
+**Error: error:0308010C:digital envelope routines::unsupported**
+```
+export NODE_OPTIONS=--openssl-legacy-provider
+```
