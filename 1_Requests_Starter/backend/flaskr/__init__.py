@@ -94,11 +94,15 @@ def create_app(test_config=None):
                     abort(404)
 
                 book.delete()
+                selection = Book.query.order_by(Book.id).all()
+                current_books = paginate_books(request, selection)
 
                 return jsonify(
                     {
                         "success": True,
                         "deleted": book_id,
+                        "books": current_books,
+                        "total_books": len(selection),
                     }
                 )
 
