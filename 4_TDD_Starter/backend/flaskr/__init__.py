@@ -128,11 +128,27 @@ def create_app(test_config=None):
         except:
             abort(422)
 
-    # @TODO: Create a new endpoint or update a previous endpoint to handle searching for a team in the title
-    #        the body argument is called 'search' coming from the frontend.
-    #        If you use a different argument, make sure to update it in the frontend code.
-    #        The endpoint will need to return success value, a list of books for the search and the number of books with the search term
-    #        Response body keys: 'success', 'books' and 'total_books'
+    @app.route("/books/search", methods=["POST"])
+    def search_books():
+        body = request.get_json()
+        search = body.get("search", None)
+
+        try:
+            selection = Book.query.order_by(Book.id).filter(
+                Book.title.ilike("%{}%".format(search))
+            )
+            current_books = paginate_books(request, selection)
+
+            return jsonify(
+                {
+                    "success": True,
+                    "books": current_books,
+                    "total_books": len(selection.all()),
+                }
+            )
+
+        except:
+            abort(404)
 
     @app.errorhandler(404)
     def not_found(error):
