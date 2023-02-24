@@ -1,6 +1,18 @@
-# Project README - TODO: CHANGE THIS TITLE
+# Bookshelf
+This is a simple bookshelf app that allows users to add, delete, and update books. It is built using the Flask framework on the backend and React on the frontend.
 
+## Getting Started
 
+### Installing Dependencies
+- Backend: `pip install -r requirements.txt`;
+- Frontend: `npm install`.
+
+### Running the server
+- Backend: `export FLASK_APP=flaskr && export FLASK_ENV=development && flask run`;
+- Frontend: `npm start`.
+
+## Authors
+- [**Matheus Machado**](matheusdev@me.com);
 
 ## API Reference
 
